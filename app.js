@@ -13,13 +13,6 @@ app.use(methodOverride('_method'))
 
 app.use(routes)
 
-app.get('/', (req, res) => {
-  res.send('this app is builded')
-})
-
-
-
-
 
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`)
