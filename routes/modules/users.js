@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
-
+const db = require('../../models')
+const User = db.User
+const Todo = db.Todo
 //認證系統路由
 //登入頁面
 router.get('/login', (req, res) => {
@@ -20,7 +22,9 @@ router.get('/register', (req, res) => {
 })
 //註冊功能
 router.post('/register', (req, res) => {
-  res.send('register')
+  const { name, email, password, confirmPassword } = req.body
+  User.create({ name, email, password })
+    .then(user => res.redirect('/'))
 })
 
 module.exports = router
