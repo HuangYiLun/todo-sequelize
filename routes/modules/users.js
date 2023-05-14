@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
+const bcrypt = require('bcryptjs')
+const passport = require('passport')
 const db = require('../../models')
 const User = db.User
 const Todo = db.Todo
-const bcrypt = require('bcryptjs')
 //認證系統路由
 //登入頁面
 router.get('/login', (req, res) => {
@@ -11,10 +12,10 @@ router.get('/login', (req, res) => {
 
 })
 //登入功能
-router.post('/login', (req, res) => {
-  res.send('login')
-
-})
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/users/login'
+}))
 
 //註冊頁面
 router.get('/register', (req, res) => {

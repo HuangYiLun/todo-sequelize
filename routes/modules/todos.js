@@ -23,7 +23,6 @@ router.get('/:id', (req, res) => {
   return Todo.findByPk(id)
     .then(todo => res.render('detail', { todo: todo.toJSON() }))
     .catch(error => console.log(error))
-
 })
 
 router.get('/:id/edit', (req, res) => {
